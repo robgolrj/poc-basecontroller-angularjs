@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="CriacaoController">
+
+<br>
+Full Name: {{firstName}}
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.factory('BaseProcedimentoController', function() {
+  return function() {    
+    this.mudandoNome = function(nome) {
+      return nome + " Completando o nome";
+    };
+  };
+})
+
+app.controller('CriacaoController', function($scope, BaseProcedimentoController) {
+    $scope.firstName = "Primeiro Nome";    
+    BaseProcedimentoController.call($scope);
+    $scope.firstName = $scope.mudandoNome($scope.firstName);
+});
+
+
+</script>
+
+</body>
+</html>
